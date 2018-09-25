@@ -69,7 +69,7 @@ def build_tiny_model():
     model.add(LeakyReLU(alpha=0.1))
 
     model.add(Flatten())
-    model.add(Dense(4096, activation='linear'))
+    model.add(Dense(1470, activation='linear'))
     model.add(LeakyReLU(alpha=0.1))
 
     model.add(Dense(845, activation='linear'))
