@@ -3,7 +3,85 @@ from keras.models import Sequential
 import tensorflow as tf
 import keras.backend as K
 
-def build_model():
+
+def build_tiny_model():
+    model = Sequential()
+    model.add(Conv2D(filters=16,
+                     kernel_size=(3, 3),
+                     input_shape=(448, 448, 3),
+                     padding='same',
+                     activation='linear'))
+    model.add(LeakyReLU(alpha=0.1))
+    model.add(MaxPooling2D(pool_size=(2, 2),
+                           strides=(2, 2),
+                           padding='same'))
+
+    model.add(Conv2D(filters=64,
+                     kernel_size=(3, 3),
+                     padding='same',
+                     activation='linear'))
+    model.add(LeakyReLU(alpha=0.1))
+
+    model.add(MaxPooling2D(pool_size=(2, 2),
+                           strides=(2, 2),
+                           padding='same'))
+
+    model.add(Conv2D(filters=128,
+                     kernel_size=(3, 3),
+                     padding='same',
+                     activation='linear'))
+    model.add(LeakyReLU(alpha=0.1))
+
+    model.add(MaxPooling2D(pool_size=(2, 2),
+                           strides=(2, 2),
+                           padding='same'))
+
+    model.add(Conv2D(filters=256,
+                     kernel_size=(3, 3),
+                     padding='same',
+                     activation='linear'))
+    model.add(LeakyReLU(alpha=0.1))
+
+    model.add(MaxPooling2D(pool_size=(2, 2),
+                           strides=(2, 2),
+                           padding='same'))
+
+    model.add(Conv2D(filters=512,
+                     kernel_size=(3, 3),
+                     padding='same',
+                     activation='linear'))
+    model.add(LeakyReLU(alpha=0.1))
+
+    model.add(MaxPooling2D(pool_size=(2, 2),
+                           strides=(2, 2),
+                           padding='same'))
+
+    model.add(Conv2D(filters=1024,
+                     kernel_size=(3, 3),
+                     padding='same',
+                     activation='linear'))
+    model.add(LeakyReLU(alpha=0.1))
+
+    model.add(Conv2D(filters=256,
+                     kernel_size=(3, 3),
+                     padding='same',
+                     activation='linear'))
+    model.add(LeakyReLU(alpha=0.1))
+
+    model.add(Flatten())
+    model.add(Dense(4096, activation='linear'))
+    model.add(LeakyReLU(alpha=0.1))
+
+    model.add(Dense(845, activation='linear'))
+    model.add(Reshape((13, 13, 5)))
+    model.summary()
+
+    return model
+
+
+
+
+def build_full_model():
     model = Sequential()
     model.add(Conv2D(filters=64,
                      kernel_size=(7, 7),

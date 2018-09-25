@@ -35,7 +35,7 @@ config = Config(image_height=448,
 generator = preprocessing.BatchGenerator(images,config, False)
 batch_x, batch_y = generator[0]
 
-model = yolo.build_model()
+model = yolo.build_tiny_model()
 optimizer = Adam(lr=0.5e-4, beta_1=0.9, beta_2=0.999, epsilon=1e-08, decay=0.0)
 model.compile(loss=yolo.custom_loss_function, optimizer=optimizer)
 model.fit_generator(generator, steps_per_epoch=len(generator), epochs=10)
