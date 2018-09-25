@@ -18,15 +18,15 @@ ANNOTATIONS_FILE = os.path.join(KAGGLE_DATA_ROOT, 'stage_1_train_labels.csv')
 raw_annotations = pd.read_csv(ANNOTATIONS_FILE)
 images = preprocessing.parse_dataset(raw_annotations)
 
-config = Config(image_height=448,
-                image_width=448,
+config = Config(image_height=416,
+                image_width=416,
                 grid_height=13,
                 grid_width=13,
                 num_boxes=5,
                 labels=['Pneumonia'],
                 num_labels=1,
                 anchors=[0.57273, 0.677385, 1.87446, 2.06253, 3.33843, 5.47434, 7.88282, 3.52778, 9.77052, 9.16828],
-                batch_size=5,
+                batch_size=1,
                 max_boxes_per_image=50,
                 image_folder_path=TRAIN_DIR,
                 original_height=1024,
